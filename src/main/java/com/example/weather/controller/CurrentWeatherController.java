@@ -15,7 +15,7 @@ public class CurrentWeatherController {
     private final WeatherService weatherService;
 
     @GetMapping("/")
-    public RedirectView login(RedirectAttributes redirectAttributes) {
+    public RedirectView rootEndpoint(RedirectAttributes redirectAttributes) {
         redirectAttributes.addFlashAttribute("message", "use location: Melbourne");
         return new RedirectView("/current-weather");
     }
