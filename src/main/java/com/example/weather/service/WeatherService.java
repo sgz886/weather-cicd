@@ -40,7 +40,10 @@ public class WeatherService {
     private CurrentWeather convert(ResponseEntity<String> response) {
         try {
             JsonNode root = objectMapper.readTree(response.getBody());
-            return new CurrentWeather(root.path("weather").get(0).path("main").asText(),
+            return new CurrentWeather(
+                    root.path("name").asText(),
+                    root.path("sys").path("country").asText(),
+                    root.path("weather").get(0).path("main").asText(),
                     BigDecimal.valueOf(root.path("main").path("temp").asDouble()),
                     BigDecimal.valueOf(root.path("main").path("feels_like").asDouble()),
                     BigDecimal.valueOf(root.path("wind").path("speed").asDouble()));
